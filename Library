@@ -1,0 +1,56 @@
+public class Library{
+    // attribut 
+    // making a list for the books so you can add to cart
+    private List<Book> books;
+
+    // constructor 
+    public Library()
+    {
+        books = new List<Book>();
+    }
+
+    // methods
+    //the customer adds the book to their cart
+    public void AddBook(string title, string author) 
+    {
+        Book newBook = new Book(title, author);
+        books.Add(newBook);
+        Console.WriteLine("Book added to cart successfully!");
+    }
+
+    // display the books that exist in the list 
+    public void DisplayBooks()
+    {
+        if ( books.Count == 0)
+        {
+            Console.WriteLine("Unfortunetly we got no books in your cart right now!");
+            return;
+        }
+
+        // listing the books that are available
+        Console.WriteLine("Books in your cart: ");
+        foreach (var book in books)
+        {
+            Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, Price: {book.Price}, Available: {(book.InStore ? "Yes" : "No")}");
+        }
+        
+        // buy a book
+        public bool BuyBook(string title)
+        {
+            Book book = books.Find(b => b.Title == title && b.InStore); // Checking if the book is in store or not
+            if (book != null)
+            {
+                book.InStore = false;
+                Console.WriteLine($"Book '{book.title}' was bought successfully!");
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine($"Book '{book.title}' is not in store at the moment.");
+                return false;
+            }
+        }
+
+    }
+}
